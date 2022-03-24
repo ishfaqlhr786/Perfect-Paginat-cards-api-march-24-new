@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {useHistory}  from 'react-router-dom'
-export const Pagination = ({showPerPage,onPageChange,total,limit}) => {
+export const Pagination = ({showPerPage,onPageChange,total,limit,start}) => {
     console.log(showPerPage)
     const [counter,setCouter]= useState(1)
     const [numberOfButtons,setNUmberOfButtons]=useState(Math.ceil(total/showPerPage))
@@ -22,28 +22,36 @@ export const Pagination = ({showPerPage,onPageChange,total,limit}) => {
     },[limit])
     
     const onButtonClick=(type)=>{
+        console.log(total)
+        console.log(counter)
         if(type ==="prev"){
-            if(counter === 1){
+            if(counter ===1){
                 setCouter(1)
             }else{
                 setCouter(counter -1)
             }
 
         } else if(type==="next"){
-     if(numberOfButtons === counter){
-         setCouter(counter)
+    //  if(numberOfButtons >= counter){
+        if(Math.ceil(total/showPerPage) <= counter){
+            console.log(counter)
+            console.log(numberOfButtons)
+       setCouter(counter )
+    // setCouter(counter + 1)
 
      }else{
-         setCouter(counter +1)
+        // setCouter(counter)
+       setCouter(counter +1)
      }
         }
+       // setCouter(counter+1)
     }
     return (
         <div>
            
             <nav aria-label="...">
   <ul className="pagination d-flex ">
-    <li className={`page-item`}><a className="page-link" href="!#" onClick={()=> onButtonClick('prev')}>Previous</a></li>
+    <li className={`page-item`}><a className="page-link"  onClick={()=> onButtonClick('prev')}>Previous</a></li>
     
    {
       new Array(Math.ceil(total/showPerPage)).fill("").map((el,index)=>{
@@ -58,7 +66,7 @@ export const Pagination = ({showPerPage,onPageChange,total,limit}) => {
         } )
           
    }
-    <li class="page-item"><a class="page-link" href="!#" onClick={()=> onButtonClick("next")}>Next</a></li>
+    <li class="page-item"><a class="page-link"  onClick={()=> onButtonClick("next")}>Next</a></li>
   </ul>
 </nav>
             {/* <button className="btn btn-md btn-primary" >Previous</button>

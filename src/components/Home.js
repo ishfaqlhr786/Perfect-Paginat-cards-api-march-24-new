@@ -135,7 +135,7 @@ useEffect(()=>{
               </li>
               <li>
       <Pagination showPerPage={showPerPage} onPageChange={onPageChange} 
-      total={posts.length} limit={limit} 
+      total={posts.length} limit={limit} start={pagination.start}
       />
       </li>
       </ul>
