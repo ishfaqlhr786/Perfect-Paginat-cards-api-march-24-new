@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import {App} from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
+import { Router1 } from './Router1';
+import { Home } from './components/Home';
 
 ReactDOM.render(
   <React.StrictMode>
